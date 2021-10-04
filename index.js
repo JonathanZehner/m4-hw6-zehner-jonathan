@@ -11,7 +11,7 @@ function getPizzaOrder() {
   var pizza = {
     // set the 'cost' property to the basePrice
     cost: basePrice
-  }
+  };
 
   var crust = prompt(
     `Please enter the type of crust (${formatPrice(thickCrustUpcharge)} upcharge for Thick crust)`
@@ -23,12 +23,12 @@ function getPizzaOrder() {
   // to pizza.cost
   if (crust) {
     pizza.crust = crust.toLowerCase().trim();
-    console.log(pizza.crust)
+    console.log(pizza.crust);
 
     if (pizza.crust === 'thick') {
-      pizza.cost += thickCrustUpcharge
-    }
-  }
+      pizza.cost += thickCrustUpcharge;
+    };
+  };
 
   var toppings = prompt("Please enter additional toppings (comma separated)")
   // HINT: prompt() will return an empty string "" if the user presses 'OK' without entering a value
@@ -36,27 +36,41 @@ function getPizzaOrder() {
   // if no toppings are given, make sure pizza.toppings is set to []
   // if the user has added toppings, add toppingsFee multiplied by
   // the number of toppings added to pizza.cost
+  if (typeof toppings !== 'string' && toppings) {
+    pizza.toppings = [];
+    pizza.cost != toppingsFee;
+    console.log(pizza.cost);
+  };
+
   if (typeof toppings === 'string' && toppings) {
     pizza.toppings = toppings.split(",");
     pizza.cost += toppings.split(",").length * toppingsFee;
     console.log(toppings);
     console.log(toppings.split(",").length);
-    console.log(toppings.split(",").length * toppingsFee)
-  }
+    console.log(toppings.split(",").length * toppingsFee);
+  };
 
   var extraCheese = confirm("Would you like extra cheese?")
   // HINT: confirm() returns a boolean
   // if the user specifies extra cheese, set pizza.extraCheese to true or false
   // if the user specifies extra cheese, add extraCheeseUpcharge to pizza.cost
-  // YOUR CODE HERE
+  if (extraCheese == true) {
+    pizza.cost += extraCheeseUpcharge;
+    console.log(extraCheeseUpcharge);
+  };
 
   var isDelivery = confirm("Is your order for Delivery?")
   // HINT: confirm() returns a boolean
   // if order is for delivery, set pizza.saleType to "delivery"
   // if order is NOT for delivery, set pizza.saleType to "take-out"
   // if order if for delivery, add deliveryFee to pizza.cost
-  // YOUR CODE HERE
-
+  if (isDelivery == true) {
+    pizza.saleType = "delivery";
+    pizza.cost += deliveryFee;
+    console.log(deliveryFee)
+  } else {
+    pizza.saleType = "take-out"
+  }
   return pizza
 }
 
